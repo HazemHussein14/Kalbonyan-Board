@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+:root {
+  --2px: 0.125rem;
+  --4px: 0.25rem;
+  --8px: 0.5rem;
+  --10px: 0.625rem;
+  --12px: 0.75rem;
+  --14px: 0.875rem;
+  --16px: 1rem;
+  --18px: 1.125rem;
+  --20px: 1.25rem;
+  --24px: 1.5rem;
+  --30px: 1.875rem;
+  --32px: 2rem;
+  --36px: 2.25rem;
+  --44px: 2.75rem;
+  --48px: 3rem;
+  --52px: 3.25rem;
+  --62px: 3.875rem;
+  --64px: 4rem;
+  --74px: 4.625rem;
+  --80px: 5rem;
+  --86px: 5.375rem;
+  --96px: 6rem;
+  --98px: 6.125rem;
+  --128px: 8rem;
+  --main-color: #009578;
+}
+div {
+  background-color: #009578;
+  padding: 10px;
+  width: fit-content;
+}
+
+li {
+  background-color: #fff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+
+}
+/* FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+
+/* FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
