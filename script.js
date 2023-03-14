@@ -9,19 +9,12 @@ let listThree = JSON.parse(localStorage.getItem("listThree")) || [];
 function renderTasks(list, parentId) {
   list.forEach((taskObj) => {
     const parentList = document.getElementById(parentId);
-    const taskEl = CreateTask();
     const taskId = taskObj.id;
+    const taskEl = CreateTask(taskId);
     const dropzoneEl = createDropZoneEl(taskId);
     taskEl.querySelector(".input-area").value = taskObj.content;
     parentList.lastElementChild.before(taskEl);
     taskEl.after(dropzoneEl);
-
-    // check if taskObj already exists in list
-    const index = list.findIndex((item) => item.id === taskObj.id);
-    if (index !== -1) {
-      // remove taskObj from list
-      list.splice(index, 1);
-    }
   });
 }
 
@@ -31,14 +24,14 @@ function render() {
   renderTasks(listThree, "completed");
 }
 
-render()
+render();
 
 // Create task item
-function CreateTask() {
+function CreateTask(id) {
   const task = document.createElement("li");
   task.classList.add("task");
   task.draggable = true;
-  task.id = generateId();
+  task.id = id || generateId();
   task.innerHTML = `
     <input type="text" class="input-area" placeholder="Type a name..." />
     <div class="btns">
@@ -61,7 +54,7 @@ function CreateTask() {
   // set dataTransfer object with id of dragged element
   task.addEventListener("dragstart", (e) => {
     e.dataTransfer.setData("text/plain", e.target.id);
-    dragAndDrop();
+
   });
   return task;
 }
