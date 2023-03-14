@@ -6,21 +6,9 @@ let listOne = JSON.parse(localStorage.getItem("listOne")) || [];
 let listTwo = JSON.parse(localStorage.getItem("listTwo")) || [];
 let listThree = JSON.parse(localStorage.getItem("listThree")) || [];
 
-
-function renderTasksFromLocalStorage() {
-  listOne.forEach((taskObj) => {
-    const parentList = document.getElementById("not-started");
-    const taskEl = CreateTask();
-    const taskId = taskObj.id;
-    const dropzoneEl = createDropZoneEl(taskId);
-    taskEl.querySelector(".input-area").value = taskObj.content;
-    parentList.lastElementChild.before(taskEl);
-    taskEl.after(dropzoneEl);
-    dragAndDrop()
-  });
-
-  listTwo.forEach((taskObj) => {
-    const parentList = document.getElementById("in-progress");
+function renderTasks(list, parentId) {
+  list.forEach((taskObj) => {
+    const parentList = document.getElementById(parentId);
     const taskEl = CreateTask();
     const taskId = taskObj.id;
     const dropzoneEl = createDropZoneEl(taskId);
@@ -28,23 +16,22 @@ function renderTasksFromLocalStorage() {
     parentList.lastElementChild.before(taskEl);
     taskEl.after(dropzoneEl);
 
-    dragAndDrop()
-  });
-
-  listThree.forEach((taskObj) => {
-    const parentList = document.getElementById("completed");
-    const taskEl = CreateTask();
-    const taskId = taskObj.id;
-    const dropzoneEl = createDropZoneEl(taskId);
-    taskEl.querySelector(".input-area").value = taskObj.content;
-    parentList.lastElementChild.before(taskEl);
-    taskEl.after(dropzoneEl);
-    dragAndDrop()
+    // check if taskObj already exists in list
+    const index = list.findIndex((item) => item.id === taskObj.id);
+    if (index !== -1) {
+      // remove taskObj from list
+      list.splice(index, 1);
+    }
   });
 }
 
-window.addEventListener("load", renderTasksFromLocalStorage);
+function render() {
+  renderTasks(listOne, "not-started");
+  renderTasks(listTwo, "in-progress");
+  renderTasks(listThree, "completed");
+}
 
+render()
 
 // Create task item
 function CreateTask() {
@@ -79,7 +66,6 @@ function CreateTask() {
   return task;
 }
 
-
 // Create dropzone element
 function createDropZoneEl(taskId) {
   const dropZoneEl = document.createElement("div");
@@ -88,6 +74,7 @@ function createDropZoneEl(taskId) {
   return dropZoneEl;
 }
 
+// Drag and Drop
 function dragAndDrop() {
   const dropzones = document.querySelectorAll(".dropzone");
   dropzones.forEach((dropzone) => {
@@ -152,9 +139,11 @@ function dragAndDrop() {
   });
 }
 
+dragAndDrop();
+
 // Generate random ID
 function generateId() {
-  return Math.floor(Math.random() * 100000);
+  return Date.now();
 }
 
 // add task to DOM
@@ -190,7 +179,6 @@ function addTaskDOM(parentId) {
   }
 }
 
-
 // Edit task
 function editTask(e) {
   const taskInput = e.target.closest(".task").querySelector(".input-area");
@@ -200,12 +188,12 @@ function editTask(e) {
 // Remove task by ID
 function removeTask(id) {
   const taskId = id;
-  const taskEl = document.getElementById(taskId.toString());
+  const taskEl = document.getElementById(taskId);
   const dropzoneEl = document.getElementById(`dropzone-${taskId}`);
   taskEl.remove();
   dropzoneEl.remove();
 
-  // Remove task from local storage
+  // Remove task and dropzone from local storage
   listOne = listOne.filter((task) => task.id !== id);
   listTwo = listTwo.filter((task) => task.id !== id);
   listThree = listThree.filter((task) => task.id !== id);
