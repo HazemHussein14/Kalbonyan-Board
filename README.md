@@ -6,7 +6,7 @@ This project is a Kanban Board built using HTML, CSS, and Vanilla JavaScript. It
 
 ## Demo
 
-You can view a live demo of the project at [example.com](https://example.com).
+You can view a live demo of the project at [Kanban Board](https://hazemhussein14.github.io/Kalbonian-phase-2-project/).
 
 ## Tech Used
 
