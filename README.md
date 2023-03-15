@@ -2,18 +2,14 @@
 
 This project is a Kanban Board built using HTML, CSS, and Vanilla JavaScript. It was created as part of the [Kalbonyan elmarsos competition](https://www.albonyanalmarsos.org/).
 
-![Screenshot](./assets/Kalbonyan-Board.png)
+https://user-images.githubusercontent.com/113997542/225227157-d9f4d5ab-28b6-41ca-8ef3-427ffd3758b1.mp4
 
-<video width="640" height="480" controls>
-  <source src="./assets/Kalbonyan-Board.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 ## Demo
 
 You can view a live demo of the project at [Kanban Board](https://hazemhussein14.github.io/Kalbonian-phase-2-project/).
 
-## Tech Used
+## Technologies Used
 
 - HTML5
 - CSS:
