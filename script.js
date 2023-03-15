@@ -54,8 +54,8 @@ function CreateTask(id) {
   // set dataTransfer object with id of dragged element
   task.addEventListener("dragstart", (e) => {
     e.dataTransfer.setData("text/plain", e.target.id);
-
   });
+  dragAndDrop();
   return task;
 }
 
@@ -131,8 +131,6 @@ function dragAndDrop() {
     });
   });
 }
-
-dragAndDrop();
 
 // Generate random ID
 function generateId() {
